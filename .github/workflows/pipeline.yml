@@ -17,10 +17,15 @@ jobs:
           # Example for Python
           echo "Installing dependencies..."
 
-      - name: Check style & run tests
+      - name: Check style
         run: |
           # Check coding style
           echo "Checking coding style..."
+
+      - name: Run tests
+        run: |
+          # Run unit tests
+          echo "Running unit tests..."
 
   build-docker-image:
     name: Build & Push Docker Image
