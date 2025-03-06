@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  check-and-test:
+    name: Check Code Style & Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          # Example for Python
+          echo "Installing dependencies..."
+
+      - name: Check style & run tests
+        run: |
+          # Check coding style
+          echo "Checking coding style..."
+
+  build-docker-image:
+    name: Build & Push Docker Image
+    needs: [check-and-test]  # depends on coding style and tests passing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Log into Docker registry
+        run: |
+          echo "Logging in into Docker registry..."
+
+      - name: Build Docker image
+        run: |
+          echo "Building Docker image..."
+
+      - name: Tag & push Docker image
+        run: |
+          echo "Tagging and pushing Docker image..."
+          echo "Pushing Docker image..."
+
+  deploy-migration:
+    name: Run Migration
+    needs: [build-docker-image]  # must happen after the image is built
+    environment: production  # "production" environment with required approval
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run migration
+        run: |
+          # Example command to run migration in a container
+          echo "Running migration..."
+
+  deploy-docker-swarm:
+    name: Deploy to Docker Swarm
+    needs: [deploy-migration]  # only run if migration succeeds
+    environment: production  # "production" environment with required approval
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy service to Docker Swarm
+        run: |
+          # Example of a Docker Swarm update
+          echo "Deploying images to Docker Swarm..."
