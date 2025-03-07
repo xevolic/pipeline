@@ -22,6 +22,11 @@ jobs:
           # Check coding style
           echo "Checking coding style..."
 
+      - name: Analyse the code
+        run: |
+          # Analyse the code
+          echo "Analysing the code..."
+
       - name: Run tests
         run: |
           # Run unit tests
