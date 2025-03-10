@@ -20,10 +20,6 @@ jobs:
         run: |
           ls -al
 
-      - name: Install dependencies
-        run: |
-          echo "Installing dependencies..."
-
       - name: Validate dependencies and lock file
         run: |
           composer validate --no-check-lock --strict composer.json
