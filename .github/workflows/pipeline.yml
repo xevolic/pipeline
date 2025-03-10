@@ -45,6 +45,17 @@ jobs:
         run: |
           ls -al
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: code-with-dependencies
+          path: |
+            .github
+            .gitignore
+            composer.json
+            composer.lock
+            src
+            vendor
+
       - name: Check style
         run: |
           # Check coding style
@@ -65,6 +76,10 @@ jobs:
     needs: [check-and-test]  # depends on coding style and tests passing
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: code-with-dependencies
+
       - name: List files in current directory before checkout
         run: |
           ls -al
