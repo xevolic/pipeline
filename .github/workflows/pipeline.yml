@@ -85,14 +85,7 @@ jobs:
         with:
           name: code-with-dependencies
 
-      - name: List files in current directory before checkout
-        run: |
-          ls -al
-
-      - name: Check out repository
-        uses: actions/checkout@v2
-
-      - name: List files in current directory after checkout
+      - name: List files in current directory after downloading an artifact
         run: |
           ls -al
 
